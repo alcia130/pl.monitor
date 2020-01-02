@@ -6,8 +6,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import workingTimeManager.Project;
+import static org.junit.Assert.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.*;
 public class ProjectTest{
 private Task task;
 private Project project;
@@ -15,7 +15,7 @@ private Project project;
     @Before
     public void setUp(){
         project = new Project(3, "test");
-        task = new Task(5,"zadanko");
+        task = new Task(5,"zadanko", project);
     }
 
 
@@ -26,13 +26,17 @@ private Project project;
         project.AddTask(task);
         //then
         assertEquals(project.getTasks().size(), 1);
+
     }
 
     @Test
     public void getTasks() {
         //given
-        //when
+        project.AddTask(task);
         //then
+        assertEquals(project.getTasks().size(), 1);
+        assertEquals(project.getTasks().get(0), task );
+
     }
 
     @Test
